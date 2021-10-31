@@ -1,3 +1,4 @@
+import datetime
 pilihan="y"
 while pilihan=="y":
     print("""
@@ -16,64 +17,48 @@ while pilihan=="y":
     jumlahpesan=int(input("masukkan jumlah pesanan ="))
     if pesan == "a":
         listnama= "Es Jeruk"
-        harga=(4000*jumlahpesan)
-        if jumlahpesan >= 3:
-            diskon = int(harga*5/100)
-            totalharga=int(harga-diskon)
-        else:
-            diskon =(0)
-            totalharga=int(harga)
+        harga = 4000
+        diskon = 10 if jumlahpesan >= 3 else 0
+        totalharga = (harga*jumlahpesan)
     elif pesan == "b":
         listnama= "Es Teh"
-        harga = (3000*jumlahpesan)
-        if jumlahpesan >= 3:
-            diskon = int(harga * 5/100)
-            totalharga =int(harga-diskon)
-        else:
-            diskon =(0)
-            totalharga =int(harga)
+        harga = 3000
+        diskon = 10 if jumlahpesan >= 3 else 0
+        totalharga = (harga*jumlahpesan)
     elif pesan == "c":
-        listnama= "Es Josu"
-        harga=int(5000*jumlahpesan)
-        if jumlahpesan >= 3:
-            diskon = int(harga*10/100)
-            totalharga=int(harga-diskon)
-        else:
-            diskon =(0)
-            totalharga=int(harga)
+        listnama= "Es Teh"
+        harga = 5000
+        diskon = 10 if jumlahpesan >= 3 else 0
+        totalharga = (harga*jumlahpesan)
     elif pesan == "d":
         listnama= "Nasi Padang"
-        harga=int(14000*jumlahpesan)
-        if jumlahpesan >= 2:
-            diskon = int(harga*10/100)
-            totalharga=int(harga-diskon)
-        else:
-            diskon =(0)
-            totalharga=int(harga)
+        harga = 14000
+        diskon = 5 if jumlahpesan >= 2 else 0
+        totalharga = (harga*jumlahpesan)
     elif pesan == "e":
         listnama= "Nasi campur"
-        harga=int(13000*jumlahpesan)
-        if jumlahpesan >= 2:
-            diskon = int(harga*10/100)
-            totalharga=int(harga-diskon)
-        else:
-            diskon =(0)
-            totalharga=int(harga)
+        harga = 13000
+        diskon = 5 if jumlahpesan >= 2 else 0
+        totalharga = (harga*jumlahpesan)
     else:
         listnama = "-"
         harga = "-"
         diskon = "-"
         totalharga = "-"
         pilihan=input("menu tidak tersedia, silahkan masukkan abjad menu yang tersedia silahkan ulangi kembali y/t =")
- 
+    metodepembayaran = input("Apa anda ingin membayar dengan E-money? (y/n)")
+    diskonpembayaran = 5 if metodepembayaran == "y" else 0
+    diskonhari = 10 if datetime.datetime.today().weekday() < 5 else 5
+    totaldiskon = diskon + diskonpembayaran + diskonpembayaran
+    totalbayar = totalharga - (totaldiskon * totalharga / 100)
     print("--------------------------")
     print("waroeng ananta")
     print("--------------------------")
     print("Menu :",listnama)
     print("Jumlah Pesan :", jumlahpesan)
     print("Harga :", harga)
-    print("Diskon :", diskon)
+    print("Diskon :", totaldiskon,"%")
     print("--------------------------")
-    print("Jumlah Bayar :", totalharga)
+    print("Jumlah Bayar :", totalbayar)
     print("--------------------------")
     pilihan=input("apakah anda ingin order kembali y/t =")
